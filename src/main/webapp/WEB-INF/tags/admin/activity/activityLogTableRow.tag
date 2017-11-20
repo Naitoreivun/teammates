@@ -44,31 +44,33 @@
             target="_blank">
           ${log.actionName}
         </a>
-        <small>
-          id: ${log.logId} [${log.userName}
-          <c:choose>
-            <c:when test="${log.hasUserHomeLink}">
-              <a href="${log.userHomeLink}" target="_blank">${log.userGoogleId}</a>
-            </c:when>
-            <c:otherwise>
-              <%-- Display user role for user who don't have home link --%>
-              ${log.displayedRole}
-            </c:otherwise>
-          </c:choose>
-          <c:choose>
-            <c:when test="${log.hasUserEmail}">
-              <a href="mailto:${log.userEmail}" target="_blank">${log.userEmail}</a>
-            </c:when>
-            <c:otherwise>
-              <%= Const.ActivityLog.UNKNOWN %>
-            </c:otherwise>
-          </c:choose>
-          ]
-        </small>
-        <button type="submit" class="btn btn-xs ${log.isActionFailure ? "btn-warning"
-            : log.isActionErrorReport ? "btn-danger" : "btn-info"}">
-          <span class="glyphicon glyphicon-zoom-in"></span>
-        </button>
+        <div class="pull-right">
+          <small>
+            id: ${log.logId} [${log.userName}
+            <c:choose>
+              <c:when test="${log.hasUserHomeLink}">
+                <a href="${log.userHomeLink}" target="_blank">${log.userGoogleId}</a>
+              </c:when>
+              <c:otherwise>
+                <%-- Display user role for user who don't have home link --%>
+                ${log.displayedRole}
+              </c:otherwise>
+            </c:choose>
+            <c:choose>
+              <c:when test="${log.hasUserEmail}">
+                <a href="mailto:${log.userEmail}" target="_blank">${log.userEmail}</a>
+              </c:when>
+              <c:otherwise>
+                <%= Const.ActivityLog.UNKNOWN %>
+              </c:otherwise>
+            </c:choose>
+            ]
+          </small>
+          <button type="submit" class="btn btn-xs ${log.isActionFailure ? "btn-warning"
+                    : log.isActionErrorReport ? "btn-danger" : "btn-info"}">
+            <span class="glyphicon glyphicon-zoom-in"></span>
+          </button>
+        </div>
         <input type="hidden" name="filterQuery" value="person:${log.userIdentity}">
         <input class="ifShowAll_for_person" type="hidden" name="all" value="false">
         <input class="ifShowTestData_for_person" type="hidden" name="testdata" value="false">
